@@ -37,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
         latitudeText = (EditText) findViewById(R.id.latitudeText);
         longitudeText = (EditText) findViewById(R.id.longitudeText);
         showButton = (Button) findViewById(R.id.showButton);
+
         mapView = (MapView) findViewById(R.id.mapView);
+        mapView.onCreate(savedInstanceState);
 
         title = "Home";
         String latitude = "41.04711496";
@@ -46,24 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
         setButtonOnClickListener(showButton);
         initMapView(mapView, savedInstanceState);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mapView.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mapView.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mapView.onDestroy();
     }
 
     private void initMapView(MapView mapView, Bundle savedInstanceState) {
@@ -85,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
                 );
             }
         });
-        mapView.onCreate(savedInstanceState);
     }
 
     private void setButtonOnClickListener(Button showButton) {
@@ -100,5 +83,35 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mapView.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mapView.onSaveInstanceState(outState);
     }
 }
