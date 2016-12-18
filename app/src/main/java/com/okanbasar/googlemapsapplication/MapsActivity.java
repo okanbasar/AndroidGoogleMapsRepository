@@ -24,7 +24,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private static final float ZOOM = 17.0F; //default: 0 (WorldView) +closeToGround (no negative values)
     private static final float TILT = 30.0F; //default: 0 (DirectlytoUp) +closeToGround (no negative values) in degrees
-    private static final float BEARING = 90.0F; //default: 0 (DirectlytoNorth) +clockwise -counterclockwise in degrees
+    private static final float BEARING = 0.0F; //default: 0 (DirectlytoNorth) +clockwise -counterclockwise in degrees
     private GoogleMap mMap;
     private String title;
     private LatLng latLngPos;
@@ -99,6 +99,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 //.newLatLngZoom(latLngPos,ZOOM)
                 .newCameraPosition(new CameraPosition(latLngPos,ZOOM,TILT,BEARING))
         );
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mMap.setTrafficEnabled(true);
     }
 
     private void setListeners() {
